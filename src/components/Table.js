@@ -6,20 +6,27 @@ class Table extends Component {
         super(props);
         this.state = {
             sortedState: '30days',
-            campersListJSON: Array(100).fill('1')
+            campersListJSON: Array(100).fill('1'),
+            currentLink:'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
         }
         this.dataPull = this.dataPull.bind(this);
     }
-    dataPull(link, newState) {
+    dataPull() {
         var httpRequest = new XMLHttpRequest();
         if (!httpRequest) {
             alert("giving up");
             return false;
         }
         httpRequest.onreadystatechange = ()=>this.alertContents(httpRequest);
-        httpRequest.open('GET', link);
+        httpRequest.open('GET', this.state.currentLink);
         httpRequest.send();
-        return httpRequest.status;
+        return true;
+    }
+
+    changeLink(link){
+        this.setState({
+            currentLink: link
+        })
     }
 
     alertContents(httpRequest) {
@@ -33,12 +40,14 @@ class Table extends Component {
                 alert('there was a problem with the request')
             }
         }
+        return;
     }
 
     render() {
         return (
             <div className="Table">
-                {this.dataPull('https://fcctop100.herokuapp.com/api/fccusers/top/recent', '30days')}
+                 {this.dataPull()} 
+                {console.log('dog')}
                 <h1 className="Title">FreeCodeCamp's Leaderboard of Awesomeness</h1>
                 <div className="description">
                     <div className="row">
@@ -46,14 +55,14 @@ class Table extends Component {
                         <div className="col-xs-3"><h2>Name</h2></div>
                         <div className="col-xs-3">
                             <Button
-                                sortingChosen={()=>{console.log('happy')}} // update state not pull data (httpRequest) => this.dataPull('https://fcctop100.herokuapp.com/api/fccusers/top/recent', '30days')
+                                sortingChosen={() => this.changeLink('https://fcctop100.herokuapp.com/api/fccusers/top/recent')} // update state not pull data 
                                 value="Points in Past 30 Days"
                             />
 
                         </div>
                         <div className="col-xs-3">
                             <Button
-                                sortingChosen={()=>{console.log('sad')}} // update state not pull data (httpRequest) => this.dataPull('https://fcctop100.herokuapp.com/api/fccusers/top/alltime', 'allTime')
+                                sortingChosen={() => this.changeLink('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')} // update state not pull data 
                                 value="Points for All Time" />
                         </div>
                     </div>
