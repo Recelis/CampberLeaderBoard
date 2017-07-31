@@ -5,7 +5,10 @@ import Table from './components/Table'
 class App extends Component {
   render() {
     return (
-      <Table />
+      <div>
+        <Table />
+        <p className="Copyright">Created by Jacky Lui using REACTJS</p>
+      </div>
     );
   }
 }

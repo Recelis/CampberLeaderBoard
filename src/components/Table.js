@@ -47,7 +47,6 @@ class Table extends Component {
         return (
             <div className="Table">
                  {this.dataPull()} 
-                {console.log('dog')}
                 <h1 className="Title">FreeCodeCamp's Leaderboard of Awesomeness</h1>
                 <div className="description">
                     <div className="row">
@@ -99,7 +98,7 @@ function SingleRow(props) {
     return (
         <div className="row">
             <div className="col-xs-3"><p className="Number">{props.number}</p></div>
-            <div className="col-xs-3"><p className="Names">{props.name}</p><img src={props.picture} width='300px' height='300px' alt='nametag' /></div>
+            <div className="col-xs-3"><p className="Names"><span><img className="images" src={props.picture} width='50px' height='50px' alt='nametag' /></span>{props.name}</p></div>
             <div className="col-xs-3"><p className="points30">{props.points30}</p></div>
             <div className="col-xs-3"><p className="pointsAllTime">{props.pointsAllTime}</p></div>
         </div>
@@ -108,7 +107,7 @@ function SingleRow(props) {
 
 function Button(props) {
     return (
-        <button onClick={() => props.sortingChosen()}>{props.value}</button>
+        <button className="buttons" onClick={() => props.sortingChosen()}>{props.value}</button>
     );
 }
 
