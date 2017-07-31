@@ -8,6 +8,10 @@
   text-align:center;
   font-family: 'Anton', sans-serif;
   font-size:50px;
+  background-color:green;
+  color:white;
+  margin:0;
+  padding:20px;
 }
 
 .description{
@@ -20,10 +24,24 @@
   font-family: 'Anton', sans-serif;
   background-color:transparent;
   border:solid transparent;
+  font-style: italic;
+}
+
+.emphasized{
+  font-style: italic;
+}
+
+.notEmphasized{
+  font-style: normal;
 }
 
 .colorRow{
-  
+  background-color:silver;
+  padding-top:5px;
+}
+
+.noColorRow{
+  padding-top:5px;
 }
 
 .Number{
@@ -38,9 +56,10 @@
 }
 
 .images{
-  border:solid white;
+  border:solid darkgreen;
   border-radius:10px;
   font-size:20px;
+  margin-right:10px;
 }
 
 .points30{

@@ -23,9 +23,10 @@ class Table extends Component {
         return true;
     }
 
-    changeLink(link) {
+    changeLink(link,buttonState) {
         this.setState({
-            currentLink: link
+            currentLink: link,
+            sortedState:buttonState
         })
     }
 
@@ -54,15 +55,20 @@ class Table extends Component {
                         <div className="col-xs-3"><h2>Name</h2></div>
                         <div className="col-xs-3">
                             <Button
-                                sortingChosen={() => this.changeLink('https://fcctop100.herokuapp.com/api/fccusers/top/recent')} // update state not pull data 
+                                sortingChosen={() => this.changeLink('https://fcctop100.herokuapp.com/api/fccusers/top/recent','30days')} // update state not pull data 
                                 value="Points in Past 30 Days"
+                                sortedState={this.state.sortedState}
+                                buttonState = "30days"
                             />
 
                         </div>
                         <div className="col-xs-3">
                             <Button
-                                sortingChosen={() => this.changeLink('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')} // update state not pull data 
-                                value="Points for All Time" />
+                                sortingChosen={() => this.changeLink('https://fcctop100.herokuapp.com/api/fccusers/top/alltime','allTime')} // update state not pull data 
+                                value="Points for All Time" 
+                                sortedState={this.state.sortedState} 
+                                buttonState = 'allTime'   
+                            />
                         </div>
                     </div>
                     <Rows
@@ -77,10 +83,14 @@ class Table extends Component {
 
 function Rows(props) {
     var rows = [];
+    var rowColor = 'colorRow';
     for (var ii = 0; ii < 100; ii++) {
+        if (ii%2===0) rowColor = 'colorRow';
+        else rowColor = 'noColorRow';
         rows.push(
             <SingleRow
                 key={ii.toString()}
+                rowColor={rowColor}
                 number={ii + 1}
                 name={props.campersListJSON[ii].username}
                 picture={props.campersListJSON[ii].img}
@@ -96,7 +106,7 @@ function Rows(props) {
 
 function SingleRow(props) {
     return (
-        <div className="colorRow">
+        <div className={props.rowColor}>
             <div className="row">
                 <div className="col-xs-3"><p className="Number">{props.number}</p></div>
                 <div className="col-xs-3"><p className="Names"><span><img className="images" src={props.picture} width='50px' height='50px' alt='nametag' /></span>{props.name}</p></div>
@@ -108,8 +118,11 @@ function SingleRow(props) {
 }
 
 function Button(props) {
+    var colorText = 'emphasized';
+    if (props.sortedState === props.buttonState) colorText = 'emphasized';
+    else colorText = 'notEmphasized'; 
     return (
-        <button className="buttons" onClick={() => props.sortingChosen()}><u>{props.value}</u></button>
+        <button className={"buttons " + colorText} onClick={() => props.sortingChosen()}><u>{props.value}</u></button>
     );
 }
 
