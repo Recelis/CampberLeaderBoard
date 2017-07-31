@@ -1,37 +1,59 @@
 
 .Table{
+  margin:30px 15% 30px 15%;
+  border: solid silver 2px;
+}
 
+.Title{
+  text-align:center;
+  font-family: 'Anton', sans-serif;
+  font-size:50px;
 }
 
 .description{
-
+  text-align:center;
+  font-family: 'Anton', sans-serif;
+  font-size:30px;
 }
 
 .buttons{
+  font-family: 'Anton', sans-serif;
+  background-color:transparent;
+  border:solid transparent;
+}
 
+.colorRow{
+  
 }
 
 .Number{
-
+  font-family: 'Anton', sans-serif;
+  font-size:20px;
 }
 
 .Names{
-
+  text-align:left;
+  font-family: 'Anton', sans-serif;
+  font-size:20px;
 }
 
 .images{
   border:solid white;
   border-radius:10px;
+  font-size:20px;
 }
 
 .points30{
-
+  font-family: 'Anton', sans-serif;
+  font-size:20px;
 }
 
 .pointsAllTime{
-
+  font-family: 'Anton', sans-serif;
+  font-size:20px;
 }
 
 .Copyright{
-
+  text-align:center;
+  font-family: 'Anton', sans-serif;
 }

@@ -7,7 +7,7 @@ class Table extends Component {
         this.state = {
             sortedState: '30days',
             campersListJSON: Array(100).fill('1'),
-            currentLink:'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
+            currentLink: 'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
         }
         this.dataPull = this.dataPull.bind(this);
     }
@@ -17,13 +17,13 @@ class Table extends Component {
             alert("giving up");
             return false;
         }
-        httpRequest.onreadystatechange = ()=>this.alertContents(httpRequest);
+        httpRequest.onreadystatechange = () => this.alertContents(httpRequest);
         httpRequest.open('GET', this.state.currentLink);
         httpRequest.send();
         return true;
     }
 
-    changeLink(link){
+    changeLink(link) {
         this.setState({
             currentLink: link
         })
@@ -46,8 +46,8 @@ class Table extends Component {
     render() {
         return (
             <div className="Table">
-                 {this.dataPull()} 
-                <h1 className="Title">FreeCodeCamp's Leaderboard of Awesomeness</h1>
+                {this.dataPull()}
+                <h1 className="Title">FreeCodeCamp's Leaderboard of Awesome</h1>
                 <div className="description">
                     <div className="row">
                         <div className="col-xs-3"><h2>#</h2></div>
@@ -65,9 +65,9 @@ class Table extends Component {
                                 value="Points for All Time" />
                         </div>
                     </div>
-                     <Rows
+                    <Rows
                         campersListJSON={this.state.campersListJSON}
-                    /> 
+                    />
                 </div>
 
             </div>
@@ -81,7 +81,7 @@ function Rows(props) {
         rows.push(
             <SingleRow
                 key={ii.toString()}
-                number={ii+1}
+                number={ii + 1}
                 name={props.campersListJSON[ii].username}
                 picture={props.campersListJSON[ii].img}
                 points30={props.campersListJSON[ii].recent}
@@ -96,18 +96,20 @@ function Rows(props) {
 
 function SingleRow(props) {
     return (
-        <div className="row">
-            <div className="col-xs-3"><p className="Number">{props.number}</p></div>
-            <div className="col-xs-3"><p className="Names"><span><img className="images" src={props.picture} width='50px' height='50px' alt='nametag' /></span>{props.name}</p></div>
-            <div className="col-xs-3"><p className="points30">{props.points30}</p></div>
-            <div className="col-xs-3"><p className="pointsAllTime">{props.pointsAllTime}</p></div>
+        <div className="colorRow">
+            <div className="row">
+                <div className="col-xs-3"><p className="Number">{props.number}</p></div>
+                <div className="col-xs-3"><p className="Names"><span><img className="images" src={props.picture} width='50px' height='50px' alt='nametag' /></span>{props.name}</p></div>
+                <div className="col-xs-3"><p className="points30">{props.points30}</p></div>
+                <div className="col-xs-3"><p className="pointsAllTime">{props.pointsAllTime}</p></div>
+            </div>
         </div>
     );
 }
 
 function Button(props) {
     return (
-        <button className="buttons" onClick={() => props.sortingChosen()}>{props.value}</button>
+        <button className="buttons" onClick={() => props.sortingChosen()}><u>{props.value}</u></button>
     );
 }
 
