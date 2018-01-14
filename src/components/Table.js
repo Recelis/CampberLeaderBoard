@@ -109,7 +109,7 @@ function SingleRow(props) {
         <div className={props.rowColor}>
             <div className="row">
                 <div className="col-xs-3"><p className="Number">{props.number}</p></div>
-                <div className="col-xs-3"><p className="Names"><span><img className="images" src={props.picture} width='50px' height='50px' alt='nametag' /></span>{props.name}</p></div>
+                <div className="col-xs-3"><p className="Names"><span><img className="images" src={props.picture} alt='nametag' /></span>{props.name}</p></div>
                 <div className="col-xs-3"><p className="points30">{props.points30}</p></div>
                 <div className="col-xs-3"><p className="pointsAllTime">{props.pointsAllTime}</p></div>
             </div>
